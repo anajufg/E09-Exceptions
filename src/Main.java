@@ -17,25 +17,19 @@ public class Main {
         Conta conta2 = new ContaCorrente(1234, lojinha, 10000, 1500);
 
 
-       /* conta1.depositar(3000);
-        conta1.depositar(2000);
-        conta1.sacar(500);
-        conta1.sacar(30);
-        conta1.sacar(70);
+        try {
+            conta1.depositar(-3000);
+        } catch (ValorNegativoException e) {
+            System.out.println(e.getMessage());
+        }
 
+        conta2.setLimite(100);
 
-        conta2.transferir(conta1, 666);
-        conta2.depositar(234);
-
-
-        System.out.println(conta1.toString());
-        conta1.imprimirExtrato(1);
-        conta1.imprimirExtrato(2);
-
-        conta1.setLimite(1001);
-        conta2.setLimite(-100);
-
-        conta1.imprimirExtratoTaxas();*/
+        try {
+            conta2.transferir(conta1, 200);
+        } catch (ValorNegativoException | SemLimiteException e) {
+            System.out.println(e.getMessage());
+        }
 
     }
 }

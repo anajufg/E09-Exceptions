@@ -33,10 +33,14 @@ abstract class Conta implements ITaxas{
         this.operacoes.add(new OperacaoDeposito(valor));
     }
 
-    public boolean sacar(double valor) throws ValorNegativoException {
+    public boolean sacar(double valor) throws ValorNegativoException, SemLimiteException {
 
         if (valor < 0) {
             throw new ValorNegativoException("Saque negativo (valor: " + valor + ")");
+        }
+
+        if (valor > this.limite) {
+            throw new SemLimiteException("Valor fora do limite (valor: " + valor +")");
         }
 
         if (valor > 0.0 && valor <= this.limite) {
@@ -48,7 +52,7 @@ abstract class Conta implements ITaxas{
         }
     }
 
-    public boolean transferir(Conta contaDestino, double valor) throws ValorNegativoException{
+    public boolean transferir(Conta contaDestino, double valor) throws ValorNegativoException, SemLimiteException{
         if (this.sacar(valor)) {
             contaDestino.depositar(valor);
             return true;
