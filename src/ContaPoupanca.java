@@ -6,9 +6,7 @@ public class ContaPoupanca extends Conta {
     @Override
     public boolean setLimite(double limite){
         if (limite < 100 || limite > 1000) {
-            this.limite = 0;
-            System.out.println("<Limite inválido>");
-            return false;
+            throw new IllegalArgumentException("Limite inválido");
         } else {
             this.limite = limite;
             return true;

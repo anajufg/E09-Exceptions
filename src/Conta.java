@@ -40,7 +40,7 @@ abstract class Conta implements ITaxas{
         }
 
         if (valor > this.limite) {
-            throw new SemLimiteException("Valor fora do limite (valor: " + valor +")");
+            throw new SemLimiteException("Valor de saque fora do limite (valor: " + valor +")");
         }
 
         if (valor > 0.0 && valor <= this.limite) {
@@ -158,5 +158,5 @@ abstract class Conta implements ITaxas{
     }
 
     // Set limite
-    public abstract boolean setLimite(double limite);
+    public abstract boolean setLimite(double limite) throws IllegalArgumentException;
 }

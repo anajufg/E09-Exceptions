@@ -14,7 +14,7 @@ public class Main {
                 new Date(), "000.00000.0000/0001", 25, "Comércio");
 
         Conta conta1 = new ContaCorrente(1234, joao, 0, 1500);
-        Conta conta2 = new ContaCorrente(1234, lojinha, 10000, 1500);
+        Conta conta2 = new ContaCorrente(1234, lojinha, 10000, 150);
 
 
         try {
@@ -23,13 +23,19 @@ public class Main {
             System.out.println(e.getMessage());
         }
 
-        conta2.setLimite(100);
+        try {
+            conta1.sacar(-300);
+        } catch (ValorNegativoException | SemLimiteException e) {
+            System.out.println(e.getMessage());
+        }
 
         try {
             conta2.transferir(conta1, 200);
         } catch (ValorNegativoException | SemLimiteException e) {
             System.out.println(e.getMessage());
         }
+
+        conta2.setLimite(-1000);
 
     }
 }

@@ -5,11 +5,9 @@ public class ContaCorrente extends Conta {
     }
 
     @Override
-    public boolean setLimite(double limite){
+    public boolean setLimite(double limite) {
         if (limite < -100) {
-            this.limite = 0;
-            System.out.println("<Limite inválido>");
-            return false;
+            throw new IllegalArgumentException("Limite inválido");
         } else {
             this.limite = limite;
             return true;
